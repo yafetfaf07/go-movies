@@ -7,8 +7,8 @@ import (
 
 func(app *application) routes() http.Handler {
 	router:=httprouter.New()
-	router.HandlerFunc(http.MethodGet,"v1/healthcheck",app.healthcheckHandler)
-	router.HandlerFunc(http.MethodPost,"v1/createMovie", app.createMovieHandler)
-	router.HandlerFunc(http.MethodGet, "v1/getMovieById/:id",app.getMovieByIDHandler)
+	router.HandlerFunc(http.MethodGet,"/v1/healthcheck",app.healthcheckHandler)
+	router.HandlerFunc(http.MethodPost,"/v1/createMovie", app.createMovieHandler)
+	router.HandlerFunc(http.MethodGet, "/v1/getMovieById/:id",app.getMovieByIDHandler)
 	return router
 }
