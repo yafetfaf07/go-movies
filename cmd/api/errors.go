@@ -12,8 +12,8 @@ func (app *application) logError(r *http.Request, err error) {
 	app.logger.Error(err.Error(), "method", method, "uri", uri)
 }
 
-func (app *application) errorResponse(w http.ResponseWriter, r *http.Request, status int, message any) {
-	env := envelope{"message": message}
+func (app *application) errorResponse(w http.ResponseWriter, r *http.Request, status int, error any) {
+	env := envelope{"error": error}
 	err := app.writeJSON(w, status, env, nil)
 
 	if err != nil {
@@ -32,7 +32,7 @@ func (app *application) serverErrorResponse(w http.ResponseWriter, r *http.Reque
 }
 
 // for resources that are not found
-func(app *application) dataNotFound(w http.ResponseWriter) {
-	message:="The requested resource not found"
-	app.writeJSON(w,http.StatusNotFound,message,nil)
+func (app *application) dataNotFound(w http.ResponseWriter) {
+	message := "The requested resource not found"
+	app.writeJSON(w, http.StatusNotFound, message, nil)
 }
