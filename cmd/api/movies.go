@@ -2,7 +2,6 @@ package main
 
 import (
 	"encoding/json"
-	"fmt"
 	"net/http"
 	"time"
 
@@ -22,7 +21,7 @@ func (app *application) createMovieHandler(w http.ResponseWriter, r *http.Reques
 		app.errorResponse(w, r, http.StatusBadRequest, err.Error())
 		return
 	}
-	fmt.Sprintf("%+v\n", input)
+	// fmt.Sprintf("%+v\n", input)
 	err = app.writeJSON(w, http.StatusCreated, input, nil)
 	if err != nil {
 		app.errorResponse(w, r, http.StatusInternalServerError, err.Error())
