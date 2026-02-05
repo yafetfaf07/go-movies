@@ -22,6 +22,9 @@ func (app *application) errorResponse(w http.ResponseWriter, r *http.Request, st
 	}
 
 }
+func (app *application) badRequestResponse(w http.ResponseWriter, r *http.Request, err error) {
+	app.errorResponse(w,r,http.StatusBadRequest,err)
+}
 
 // This is for unknown crashes, database connection, third party crashes or internal problems
 func (app *application) serverErrorResponse(w http.ResponseWriter, r *http.Request, err error) {
