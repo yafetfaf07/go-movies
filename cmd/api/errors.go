@@ -34,8 +34,12 @@ func (app *application) serverErrorResponse(w http.ResponseWriter, r *http.Reque
 	app.errorResponse(w, r, http.StatusInternalServerError, message)
 }
 
-// for resources that are not found
+// for resources that are not found (404)
 func (app *application) dataNotFound(w http.ResponseWriter) {
 	message := "The requested resource not found"
 	app.writeJSON(w, http.StatusNotFound, message, nil)
+}
+// for managing validation errors (422 status code)
+func (app *application) failedValidationResponse(w http.ResponseWriter, r *http.Request, errors map[string]string) {
+app.errorResponse(w, r, http.StatusUnprocessableEntity, errors)
 }
